@@ -1,5 +1,5 @@
 import { createContext, useEffect, useMemo, useState, FC } from 'react';
-import { ContextProviderInterface, ContextTitleValuesInterface, titleContextType } from '../src/models/ContextModel';
+import { ContextProviderInterface, ContextTitleValuesInterface, titleContextType } from '../models/ContextModel';
 
 //Context
 export const TitleContext = createContext<titleContextType>({
