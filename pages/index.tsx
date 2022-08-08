@@ -9,6 +9,7 @@ import { PokemonListInterface, SmallPokemonInterface } from '../models/ServicesM
 import { TitleContext } from '../context/title.context'
 import { titleContextType } from '../models/ContextModel'
 
+
 interface HomeProps {
   pokemons: SmallPokemonInterface[];
 }
@@ -18,7 +19,7 @@ const HomePage: NextPage<HomeProps> = ({ pokemons }) => {
   useEffect(() => {
     changeTitle('PokémonApp');
   }, []);
-
+  
   return (
     <div>
       <Grid.Container gap={2} justify='flex-start'>
@@ -37,7 +38,7 @@ const HomePage: NextPage<HomeProps> = ({ pokemons }) => {
 
 
 // only at pages!!!!!!!!!!!!!!!!!!! 
-// it excutes once at build time 
+// it executes once at build time 
 // You should use getStaticProps when:
 //- The data required to render the page is available at build time ahead of a user’s request.
 //- The data comes from a headless CMS.
