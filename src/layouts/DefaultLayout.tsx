@@ -7,6 +7,7 @@ import { Navbar } from "../ui";
 
 export const DefaultLayout: FC<LayoutInterface> = ({ children }:LayoutInterface) => {
     const { title } = useContext<titleContextType>(TitleContext);
+    useEffect(()=>{console.log("sad")});
     return (
         <>
             <Head>
