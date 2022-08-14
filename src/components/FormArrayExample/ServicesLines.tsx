@@ -28,7 +28,7 @@ export const ServicesLines: FC<ServicesLinesInterface> = ({ control,
                                         </label>
                                         <Input
                                             defaultValue={ServicesLine.id}
-                                            {...register(`commercial_offers_services_lines.${index}.line_id`, { required: true, maxLength: { value: 2, message: "error message" } })}
+                                            {...register(`commercial_offers_services_lines.${index}.line_id`, { required: true, maxLength: { value: 2, message: "longitud no valida" } })}
                                         />
                                         {errors &&
                                         errors?.commercial_offers_services_lines&&
@@ -56,7 +56,6 @@ export const ServicesLines: FC<ServicesLinesInterface> = ({ control,
                     setValue("commercial_offers_services_lines",[
                         ...getValues().commercial_offers_services_lines,
                         { line_id: '',id:'',commercial_offers_services_groups:[]
-                        
                     }
                     ])
             }}>

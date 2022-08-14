@@ -36,10 +36,9 @@ export const ServicesContainer: FC = () => {
       </p>
       <Controller
         name='email'
-        rules={{required:'cosas',pattern:{value:/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,message:'email no valido'}}}
+        rules={{required:'cosas',pattern:{value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,message:'email no valido'}}}
         control={control}
         render={({ field }) => {
-          console.log("field",field)
           return (<Input {...field} />)
         }}
       />
