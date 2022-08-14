@@ -9,26 +9,13 @@ import { Pokemon } from '../../models/ServicesModel';
 import { pokeApi } from '../../services';
 import { TitleContext } from '../../context/title.context';
 import { titleContextType } from '../../models/ContextModel';
-import { Button, Checkbox, Input } from '@nextui-org/react';
-import { Controller, useForm, FormProvider, useFieldArray } from 'react-hook-form';
-import Select from 'react-select';
-import { InsideArray } from '../../src/components/insideArray';
+import { ServicesContainer } from '../../src/components/FormArrayExample/ServicesContainer';
+
+
 interface Props {
     pokemon: Pokemon
 }
-export interface bodyObject {
-    id: string;
 
-    cosas3: cosas2Interface[];
-}
-export interface cosas2Interface {
-    id: string;
-    cosas4: cosas3Interface[];
-}
-export interface cosas3Interface {
-    id: string;
-    cosa5: string;
-}
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
     const { changeTitle } = useContext<titleContextType>(TitleContext);
     useEffect(() => {
@@ -36,117 +23,18 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
             changeTitle(`${pokemon.name}`);
         }
     }, []);
-    const ObjetoPrueba: bodyObject = {
-        id: 'Idplano',
-        cosas3: [
-            {
-                id: 'id debajo 1',
-                cosas4: [
-                    { id: 'asdasd1', cosa5: 'cosa4-1' },
-                    { id: 'asdasd2', cosa5: 'cosa4-2' },
-                    { id: 'asdasd3', cosa5: 'cosa4-3' },
-                ]
-            },
-            {
-                id: 'id debajo 2',
-                cosas4: [
-                    { id: 'asdasd1-2', cosa5: 'cosa4-1-2' },
-                    { id: 'asdasd2-2', cosa5: 'cosa4-2-2' },
-                    { id: 'asdasd3-2', cosa5: 'cosa4-3-2' },
-                ]
-            },
-        ]
-    }
-    const methods = useForm<bodyObject>({
-        defaultValues: {
-            id: 'Idplano',
-            cosas3: [
-                {
-                    id: 'id debajo 1',
-                    cosas4: [
-                        { id: 'asdasd1', cosa5: 'cosa4-1' },
-                        { id: 'asdasd2', cosa5: 'cosa4-2' },
-                        { id: 'asdasd3', cosa5: 'cosa4-3' },
-                    ]
-                },
-                {
-                    id: 'id debajo 2',
-                    cosas4: [
-                        { id: 'asdasd1-2', cosa5: 'cosa4-1-2' },
-                        { id: 'asdasd2-2', cosa5: 'cosa4-2-2' },
-                        { id: 'asdasd3-2', cosa5: 'cosa4-3-2' },
-                    ]
-                },
-            ]
-        },
-
-    });
-    const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
-        control:methods.control, // control props comes from useForm (optional: if you are using FormContext)
-        name: "cosas3", // unique name for your Field Array
-      });
-    const onSubmit = (data: any) => console.log(data);
+   
+    
 
     return (
         <div>
-            
-            <span>{pokemon.id}-</span>
+            <div>
+            <span>{pokemon.id}</span>
+            <span>&nbsp;</span>
             <span>{pokemon.name}</span>
-            <Button onClick={()=>append({id:'',cosas4:[{id:'',cosa5:''}]})}>append</Button>
-            <Button onClick={()=>remove(3)}>remove</Button>
-            <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit(onSubmit)} id='aws' >
-                    <Controller
-                        name="id"
-                        control={methods.control}
-                        render={({ field }) => {
-                            return (<Input {...field} />)
-                        }
-                        }
-                    />
-                    <hr />
-                    {fields.map(
-                        (field, index: number) => {
-                            return (
-                                <div key={`cosas-${index}`}>
-                                    <Input key={field.id} 
-                                    {...methods.register(`cosas3.${index}.id`)} 
-                                    />
-                                    <InsideArray 
-                                    control={methods.control}
-                                    index={index}
-                                    value={field}
-                                    />
-                                    <hr />
-                                </div>
-                                
-                            )
-                        })
-                    }
-                    {/* <Controller
-                        name="select"
-                        control={methods.control}
-                        render={({ field }) =>
-                            <Select
-                                {...field}
-                                options={[
-                                    { value: "chocolate", label: "Chocolate" },
-                                    { value: "strawberry", label: "Strawberry" },
-                                    { value: "vanilla", label: "Vanilla" }
-                                ]}
-                            />}
-                    /> */}
 
-
-                    {/* <label htmlFor="1">asdasd</label>
-
-                <Input aria-label='1' type="text" name='1' form='aws' placeholder='asdasd ' /> */}
-                <hr />
-                    <button type='submit'>aaa</button>
-
-                </form>
-                
-            </FormProvider>
+            </div>
+            <ServicesContainer />
         </div>
     )
 }
